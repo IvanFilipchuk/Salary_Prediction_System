@@ -31,3 +31,11 @@ Dane używane do analizy pochodzą z Kaggle.com ([Data Science Job Salaries](htt
   - `S`: mniej niż 50 pracowników (mała firma)
   - `M`: od 50 do 250 pracowników (średnia firma)
   - `L`: więcej niż 250 pracowników (duża firma)
+
+## Typ modelu
+
+Ponieważ mamy dane oznaczone labelami, zastosujemy uczenie nadzorowane. W związku z złożonością problemu oraz potencjalną potrzebą uwzględnienia nieliniowych zależności, wybór algorytmu jest istotny. Dwa główne kandydatury to:
+
+1. **Las Losowy (Random Forest Regressor):** Jest to optymalny wybór ze względu na możliwość radzenia sobie zarówno z cechami numerycznymi, jak i kategorycznymi. Ten algorytm jest odporny na nadmierne dopasowanie i potrafi efektywnie uchwycić złożone interakcje między cechami. Ponadto, często osiąga dobre wyniki bez potrzeby intensywnej optymalizacji hiperparametrów.
+
+2. **Gradient Boosting Regressor:** Ten algorytm potrafi efektywnie modelować złożone zależności między cechami a zmienną docelową, co jest istotne w przypadku prognozowania wynagrodzeń na podstawie różnorodnych czynników zawodowych. Ponadto, dzięki sekwencyjnemu budowaniu drzew decyzyjnych, algorytm ten może dopasowywać się do błędów poprzednich modeli, co może przyczynić się do poprawy jakości prognoz.
