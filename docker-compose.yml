@@ -1,0 +1,7 @@
+version: '3'
+services:
+  salary_prediction:
+    build: .
+    volumes:
+      - ./model:/app/model
+      - ./data:/app/data

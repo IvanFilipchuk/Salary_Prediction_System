@@ -1,12 +1,16 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM python:3.9
+
+# Install Java
+RUN apt-get update && \
+    apt-get install -y default-jdk
+
 WORKDIR /app
-COPY src/ /app/
-COPY data/ /app/data/
-RUN pip install pandas
-RUN pip install pandas
-RUN pip install pandas
-RUN pip install pandas
-EXPOSE 8888
-ENV NAME World
+
+COPY . /app
+
+RUN pip install --no-cache-dir dask scikit-learn pandas numpy dask[distributed]
+
+EXPOSE 9999
+
+CMD ["python", "regression_evaluation.py"]
 CMD ["python", "stream_processing.py"]

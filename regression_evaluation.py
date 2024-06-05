@@ -42,8 +42,8 @@ print("MAE:", rf_mae)
 print("RMSE:", rf_rmse)
 
 
-joblib.dump(gb_model, 'model/gb_model.pkl')
-joblib.dump(rf_model, 'model/rf_model.pkl')
-joblib.dump(scaler, 'model/scaler.pkl')
+joblib.dump(gb_model, 'model/gb_model.pkl', protocol=4)
+joblib.dump(rf_model, 'model/rf_model.pkl', protocol=4)
+joblib.dump(scaler, 'model/scaler.pkl', protocol=4)
 for column, le in label_encoders.items():
-    joblib.dump(le, f'model/label_encoder_{column}.pkl')
+    joblib.dump(le, f'model/label_encoder_{column}.pkl', protocol=4)
