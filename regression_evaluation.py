@@ -31,16 +31,19 @@ gb_rmse = np.sqrt(np.mean((gb_predictions - y_test) ** 2))
 rf_rmse = np.sqrt(np.mean((rf_predictions - y_test) ** 2))
 
 
-print("Gradient Boosting Metrics:")
+print("Gradient Boosting:")
 print("Loss:", gb_loss)
 print("MAE:", gb_mae)
 print("RMSE:", gb_rmse)
 
-print("\nRandom Forest Metrics:")
+print("\nRandom Forest:")
 print("Loss:", rf_loss)
 print("MAE:", rf_mae)
 print("RMSE:", rf_rmse)
 
-# Save models
-joblib.dump(gb_model, 'gb_model.pkl')
-joblib.dump(rf_model, 'rf_model.pkl')
+
+joblib.dump(gb_model, 'model/gb_model.pkl')
+joblib.dump(rf_model, 'model/rf_model.pkl')
+joblib.dump(scaler, 'model/scaler.pkl')
+for column, le in label_encoders.items():
+    joblib.dump(le, f'model/label_encoder_{column}.pkl')
