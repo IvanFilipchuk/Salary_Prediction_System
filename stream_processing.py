@@ -12,11 +12,12 @@ if __name__ == '__main__':
         'experience_level': joblib.load('model/label_encoder_experience_level.pkl'),
         'employment_type': joblib.load('model/label_encoder_employment_type.pkl'),
         'job_title': joblib.load('model/label_encoder_job_title.pkl'),
-        'company_size': joblib.load('model/label_encoder_company_size.pkl')
+        'company_size': joblib.load('model/label_encoder_company_size.pkl'),
+        'company_location': joblib.load('model/label_encoder_company_location.pkl')
     }
     def preprocess_data(df):
         salary_in_usd = df['salary_in_usd']
-        df = df.drop(columns=['salary', 'salary_currency', 'salary_in_usd', 'employee_residence', 'company_location'])
+        df = df.drop(columns=['salary', 'salary_currency', 'salary_in_usd', 'employee_residence'])
         for column, le in label_encoders.items():
             df[column] = le.transform(df[column])
         df_scaled = scaler.transform(df)
@@ -42,9 +43,9 @@ if __name__ == '__main__':
         print("Record:", row)
     gb_mae = abs(gb_predicted_salaries - salary).mean()
     rf_mae = abs(rf_predicted_salaries - salary).mean()
+    print(gb_mae,rf_mae)
     if gb_mae < rf_mae:
-        print("Gradient Boosting model was more precise.")
-    elif gb_mae > rf_mae:
-        print("Random Forest model was more precise.")
+        print("Gradient Boosting model posiada większą skuteczność.")
     else:
-        print("Both models have the same precision.")
+        print("Random Forest model posiada większą skuteczność.")
+
