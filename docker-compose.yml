@@ -1,7 +1,29 @@
 version: '3'
 services:
-  salary_prediction:
+  regression_evaluation:
     build: .
     volumes:
       - ./model:/app/model
       - ./data:/app/data
+    command: python regression_evaluation.py
+
+  stream_processing:
+    build: .
+    volumes:
+      - ./model:/app/model
+      - ./data:/app/data
+    command: python stream_processing.py
+
+  classification_evaluation:
+    build: .
+    volumes:
+      - ./model:/app/model
+      - ./data:/app/data
+    command: python classification_evaluation.py
+
+  classification_stream_processing:
+    build: .
+    volumes:
+      - ./model:/app/model
+      - ./data:/app/data
+    command: python classification_stream_processing.py
